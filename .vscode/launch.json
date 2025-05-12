@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C++ Launch",
+      "cwd": "${workspaceFolder}/build",
+      "type": "lldb",
+      "request": "launch",
+      "breakpointMode": "file",
+      "program": "${workspaceFolder}/build/game",
+      "preLaunchTask": "Build (make-j2)"
+    }
+  ]
+}
