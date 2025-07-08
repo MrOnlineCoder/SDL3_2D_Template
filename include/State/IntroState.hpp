@@ -6,6 +6,7 @@
 #include <Render/Sprite.hpp>
 #include <Common/Clock.hpp>
 #include <Render/AnimatedSprite.hpp>
+#include <Input/ScopedInputBinder.hpp>
 
 class IntroState : public State
 {
@@ -24,4 +25,5 @@ private:
     Sprite m_logo;
     Clock m_clock;
     bool m_showingLogo;
+    ScopedInputBinder m_inputBinder;
 };

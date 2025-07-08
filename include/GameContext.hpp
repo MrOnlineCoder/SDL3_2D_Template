@@ -5,6 +5,7 @@
 #include <Common/Vector.hpp>
 #include <Resources/AssetsManager.hpp>
 #include <State/StateManager.hpp>
+#include <Input/InputManager.hpp>
 
 struct GameContext
 {
@@ -19,8 +20,9 @@ struct GameContext
 
     uint64_t ticksSinceStart;
     float secondsSinceStart;
-
     float deltaTime;
+
+    InputManager input;
 
     bool isRunning;
 };

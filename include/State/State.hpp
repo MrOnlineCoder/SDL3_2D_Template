@@ -10,10 +10,15 @@ public:
     virtual ~State() = default;
 
     virtual void onEnter() = 0;
-    virtual void onInput(const SDL_Event &event) = 0;
+
+    /// @brief Low-level input handling. For handling game related events, use higher-level input mapping.
+    /// @param event
+    virtual void onInput(const SDL_Event &event) {};
+
     virtual void onUpdate(float deltaTime) = 0;
     virtual void onRender() = 0;
-    virtual void onExit() = 0;
+
+    virtual void onExit() {};
 
 protected:
     GameContext &m_context;

@@ -31,7 +31,9 @@ set(SOURCES
     src/Common/Clock.cpp
     src/Render/AnimatedSprite.cpp
     src/Resources/Music.cpp
-    src/State/MainMenuState.cpp)
+    src/State/MainMenuState.cpp
+    src/Input/InputManager.cpp
+    src/Input/ScopedInputBinder.cpp)
 
 FetchContent_Declare(
     SDL3

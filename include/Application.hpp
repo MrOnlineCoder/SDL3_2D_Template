@@ -11,4 +11,5 @@ private:
     void initImGui();
     void loadAssets();
     void loadStates();
+    void configureInputs();
 };

@@ -18,6 +18,8 @@
 #include <imgui_impl_sdl3.h>
 #include <imgui.h>
 
+#include <Input/InputKeys.hpp>
+
 Application::Application()
 {
     ASSERT(g_gameContext == nullptr);
@@ -114,6 +116,8 @@ Application::Application()
 
     initImGui();
 
+    configureInputs();
+
     LOG_INFO("Using renderer: %s", rendererName);
 
     loadAssets();
@@ -154,6 +158,11 @@ void Application::loadStates()
     g_gameContext->states->pushState(new MainMenuState());
 }
 
+void Application::configureInputs()
+{
+    g_gameContext->input.addAction(InputKeys::SKIP_INTRO, SDL_SCANCODE_SPACE);
+}
+
 void Application::run()
 {
     LOG_INFO("Starting main loop");
@@ -185,6 +194,8 @@ void Application::run()
             ImGui_ImplSDL3_ProcessEvent(&event);
 
             g_gameContext->states->handleInput(event);
+
+            g_gameContext->input.handleInputEvent(event);
         }
 
         g_gameContext->states->update(

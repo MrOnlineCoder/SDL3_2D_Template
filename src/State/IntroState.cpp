@@ -1,4 +1,5 @@
 #include <State/IntroState.hpp>
+#include <Input/InputKeys.hpp>
 
 IntroState::IntroState() : State(*g_gameContext), m_showingLogo(false)
 {
@@ -8,6 +9,16 @@ IntroState::IntroState() : State(*g_gameContext), m_showingLogo(false)
     m_text.setPosition(
         m_context.windowCenter - m_text.getSize().x / 2);
     m_text.setFillColor(Colors::White);
+
+    m_inputBinder.bindAction(
+        InputKeys::SKIP_INTRO,
+        [this](bool pressed)
+        {
+            if (pressed)
+            {
+                m_context.states->changeState(StateType::MAIN_MENU);
+            }
+        });
 }
 
 IntroState::~IntroState()
@@ -50,4 +61,5 @@ void IntroState::onRender()
 
 void IntroState::onExit()
 {
+    m_inputBinder.reset();
 }
