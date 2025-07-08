@@ -1,5 +1,4 @@
-#ifndef SOUND_BUFFER_HPP
-#define SOUND_BUFFER_HPP
+#pragma once
 
 #include <SDL3_mixer/SDL_mixer.h>
 
@@ -19,5 +18,3 @@ public:
 private:
     Mix_Chunk *m_chunk;
 };
-
-#endif

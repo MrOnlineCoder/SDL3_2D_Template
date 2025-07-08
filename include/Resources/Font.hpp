@@ -1,9 +1,10 @@
-#ifndef FONT_HPP
-#define FONT_HPP
+#pragma once
 
 #include <SDL3_ttf/SDL_ttf.h>
 
 #include <string>
+
+#include <unordered_map>
 
 enum FontStyle
 {
@@ -14,22 +15,26 @@ enum FontStyle
     STRIKETHROUGH = TTF_STYLE_STRIKETHROUGH
 };
 
+struct FontCacheHash
+{
+    bool operator()(const std::pair<int, FontStyle> &key) const
+    {
+        return std::hash<int>()(key.first) ^ std::hash<int>()(static_cast<int>(key.second));
+    }
+};
+
 class Font
 {
 public:
     Font();
     ~Font();
 
-    void loadFromFile(const std::string &filepath, int ptsize = 18);
+    void loadFromFile(const std::string &filepath);
 
-    TTF_Font *getFont() const { return m_font; }
-
-    void setSize(unsigned int ptsize);
-    void setStyle(int style);
+    TTF_Font *obtainHandle(int ptsize, FontStyle style = FontStyle::NORMAL);
 
 private:
-    int m_style;
-    TTF_Font *m_font;
-};
+    TTF_Font *m_baseHandle;
 
-#endif
+    std::unordered_map<std::pair<int, FontStyle>, TTF_Font *, FontCacheHash> m_handles;
+};

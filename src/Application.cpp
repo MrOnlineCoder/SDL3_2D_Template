@@ -27,6 +27,7 @@ Application::Application()
     g_gameContext->ticksSinceStart = 0;
     g_gameContext->deltaTime = 0;
     g_gameContext->isRunning = true;
+    g_gameContext->logicalSize = {1920, 1080};
 
     if (!SDL_Init(
             SDL_INIT_VIDEO | SDL_INIT_AUDIO))
@@ -66,7 +67,7 @@ Application::Application()
         "Game",
         displayMode->w,
         displayMode->h,
-        SDL_WINDOW_FULLSCREEN);
+        0);
 
     if (!g_gameContext->window)
     {
@@ -90,6 +91,24 @@ Application::Application()
         LOG_ERROR("Unable to create renderer: %s", SDL_GetError());
         return;
     }
+
+    SDL_SetRenderDrawBlendMode(
+        g_gameContext->renderer,
+        SDL_BLENDMODE_BLEND);
+
+    SDL_Rect viewport;
+    viewport.x = 0;
+    viewport.y = 0;
+    viewport.w = g_gameContext->logicalSize.x;
+    viewport.h = g_gameContext->logicalSize.y;
+
+    SDL_SetRenderViewport(g_gameContext->renderer, &viewport);
+
+    SDL_SetRenderLogicalPresentation(
+        g_gameContext->renderer,
+        g_gameContext->logicalSize.x,
+        g_gameContext->logicalSize.y,
+        SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
     const char *rendererName = SDL_GetRendererName(g_gameContext->renderer);
 
@@ -118,7 +137,7 @@ void Application::loadAssets()
 
     g_gameContext->assets = new AssetsManager();
 
-    g_gameContext->assets->loadMainFont("fonts/retganon.ttf");
+    g_gameContext->assets->loadMainFont("fonts/Roboto.ttf");
     g_gameContext->assets->loadSound("intro", "sounds/intro.mp3");
 
     LOG_INFO("Assets loaded");
@@ -151,6 +170,7 @@ void Application::run()
         {
             if (event.type == SDL_EVENT_QUIT)
             {
+                g_gameContext->isRunning = false;
                 break;
             }
 
@@ -206,11 +226,11 @@ Application::~Application()
     ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
 
-    SDL_DestroyWindow(g_gameContext->window);
-    SDL_DestroyRenderer(g_gameContext->renderer);
-
     delete g_gameContext->states;
     delete g_gameContext->assets;
+
+    SDL_DestroyWindow(g_gameContext->window);
+    SDL_DestroyRenderer(g_gameContext->renderer);
 
     delete g_gameContext;
     g_gameContext = nullptr;

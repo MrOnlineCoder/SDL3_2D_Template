@@ -1,5 +1,4 @@
-#ifndef ASSETS_MANANGER_HPP
-#define ASSETS_MANANGER_HPP
+#pragma once
 
 #include <Resources/Texture.hpp>
 #include <Resources/Font.hpp>
@@ -25,7 +24,7 @@ public:
     void pauseMusic();
     void stopMusic();
 
-    const Font &getMainFont() const { return m_mainFont; }
+    Font &getMainFont() { return m_mainFont; }
     const Texture &getTexture(const std::string &name) const { return *m_textures.at(name); }
     const SoundBuffer &getSoundBuffer(const std::string &name) const { return *m_soundBuffers.at(name); }
 
@@ -35,5 +34,3 @@ private:
     Font m_mainFont;
     Music m_music;
 };
-
-#endif

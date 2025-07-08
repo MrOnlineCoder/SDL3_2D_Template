@@ -1,6 +1,4 @@
-#ifndef CLOCK_HPP
-#define CLOCK_HPP
-
+#pragma once
 #include <cstdint>
 
 class Clock
@@ -16,5 +14,3 @@ public:
 private:
     std::uint64_t m_timestamp;
 };
-
-#endif

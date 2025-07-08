@@ -1,5 +1,5 @@
-#ifndef SPRITE_HPP
-#define SPRITE_HPP
+#pragma once
+
 #include <Common/Vector.hpp>
 #include <Resources/Texture.hpp>
 #include <Common/Rect.hpp>
@@ -38,5 +38,3 @@ private:
     IntRect m_textureRect;
     const Texture *m_texture;
 };
-
-#endif

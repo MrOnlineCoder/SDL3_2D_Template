@@ -2,7 +2,7 @@
 
 IntroState::IntroState() : State(*g_gameContext), m_showingLogo(false)
 {
-    m_text.setString("KORCHMA GAMES");
+    m_text.setString("STUDIO PRESENTS");
     m_text.setFont(
         m_context.assets->getMainFont());
     m_text.setPosition(

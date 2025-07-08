@@ -1,5 +1,4 @@
-#ifndef ANIMATED_SPRITE_HPP
-#define ANIMATED_SPRITE_HPP
+#pragma once
 
 #include <Resources/Texture.hpp>
 #include <Common/Rect.hpp>
@@ -69,5 +68,3 @@ private:
     float m_elapsedTime;
     float m_frameTime;
 };
-
-#endif

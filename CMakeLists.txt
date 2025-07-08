@@ -99,6 +99,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(box2d)
 
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 
 set(IMGUI_DIR ${imgui_SOURCE_DIR})
 
@@ -118,7 +121,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_include_directories(${PROJECT_NAME} PRIVATE ${IMGUI_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${IMGUI_DIR}/backends)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 SDL3_image::SDL3_image SDL3_mixer::SDL3_mixer SDL3_ttf::SDL3_ttf)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 SDL3_image::SDL3_image SDL3_mixer::SDL3_mixer SDL3_ttf::SDL3_ttf nlohmann_json::nlohmann_json)
 
 add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD

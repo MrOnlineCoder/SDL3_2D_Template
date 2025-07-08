@@ -1,5 +1,4 @@
-#ifndef TEXTURE_HPP
-#define TEXTURE_HPP
+#pragma once
 
 #include <string>
 #include <Common/Vector.hpp>
@@ -22,5 +21,3 @@ private:
     SDL_Texture *m_texture;
     Vector2i m_size;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TEXT2D_HPP
-#define TEXT2D_HPP
+#pragma once
 
 #include <Resources/Font.hpp>
 #include <Common/Vector.hpp>
@@ -14,7 +13,7 @@ public:
     Text2D();
     ~Text2D();
 
-    void setFont(const Font &fnt);
+    void setFont(Font &fnt);
 
     void setString(const std::string &str);
 
@@ -24,6 +23,12 @@ public:
 
     void setPosition(const Vector2f &pos);
 
+    void setOrigin(const Vector2f &origin);
+
+    void setFontSize(int size);
+
+    void useCenterOrigin() { setOrigin({m_bounds.width / 2, m_bounds.height / 2}); }
+
     const Vector2f &getPosition() const { return m_position; }
     const Vector2i &getSize() const { return m_size; }
     const FloatRect &getBounds() const { return m_bounds; }
@@ -31,14 +36,14 @@ public:
 private:
     void update();
 
-    const Font *m_font;
+    Font *m_font;
+    int m_fontSize;
     Vector2f m_position;
     Vector2i m_size;
     FloatRect m_bounds;
     Color m_fillColor;
     std::string m_string;
+    Vector2f m_origin;
 
     SDL_Texture *m_texture;
 };
-
-#endif

@@ -1,6 +1,4 @@
-#ifndef COLOR_HPP
-#define COLOR_HPP
-
+#pragma once
 #include <SDL3/SDL_render.h>
 
 class Color
@@ -29,5 +27,3 @@ namespace Colors
     const Color Cyan(0, 255, 255);
     const Color Transparent(0, 0, 0, 0);
 }
-
-#endif

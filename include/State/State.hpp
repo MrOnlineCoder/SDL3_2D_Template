@@ -1,5 +1,4 @@
-#ifndef STATE_HPP
-#define STATE_HPP
+#pragma once
 
 #include <GameContext.hpp>
 #include <SDL3/SDL_events.h>
@@ -19,5 +18,3 @@ public:
 protected:
     GameContext &m_context;
 };
-
-#endif

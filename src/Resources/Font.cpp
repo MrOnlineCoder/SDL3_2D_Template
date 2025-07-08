@@ -2,42 +2,53 @@
 
 #include <Common/Logger.hpp>
 
-Font::Font() : m_font(nullptr), m_style(FontStyle::NORMAL)
+Font::Font() : m_baseHandle(nullptr)
 {
 }
 
 Font::~Font()
 {
-    if (m_font)
+    for (const auto &pair : m_handles)
     {
-        TTF_CloseFont(m_font);
+        if (pair.second && pair.second != m_baseHandle)
+        {
+            TTF_CloseFont(pair.second);
+        }
+    }
+
+    if (m_baseHandle)
+    {
+        TTF_CloseFont(m_baseHandle);
     }
 }
 
-void Font::loadFromFile(const std::string &filepath, int ptsize)
+void Font::loadFromFile(const std::string &filepath)
 {
-    m_font = TTF_OpenFont(filepath.c_str(), 24);
+    m_baseHandle = TTF_OpenFont(filepath.c_str(), 24);
 
-    if (!m_font)
+    if (!m_baseHandle)
     {
-        LOG_ERROR("Unable to load font: %s", SDL_GetError());
+        LOG_ERROR("Unable to load base font: %s", SDL_GetError());
         return;
     }
+
+    m_handles[{24, FontStyle::NORMAL}] = m_baseHandle;
 }
 
-void Font::setSize(unsigned int ptsize)
+TTF_Font *Font::obtainHandle(int ptsize, FontStyle style)
 {
-    if (m_font)
-    {
-        TTF_SetFontSize(m_font, ptsize);
-    }
-}
+    auto it = m_handles.find({ptsize, style});
 
-void Font::setStyle(int style)
-{
-    if (m_font)
+    if (it != m_handles.end())
     {
-        TTF_SetFontStyle(m_font, style);
-        m_style = style;
+        return it->second;
     }
+
+    TTF_Font *newHandle = TTF_CopyFont(m_baseHandle);
+
+    TTF_SetFontSize(newHandle, ptsize);
+    TTF_SetFontStyle(newHandle, static_cast<TTF_FontStyleFlags>(style));
+
+    m_handles[{ptsize, style}] = newHandle;
+    return newHandle;
 }

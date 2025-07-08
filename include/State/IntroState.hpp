@@ -1,5 +1,4 @@
-#ifndef INTRO_STATE_HPP
-#define INTRO_STATE_HPP
+#pragma once
 
 #include <State/State.hpp>
 
@@ -26,5 +25,3 @@ private:
     Clock m_clock;
     bool m_showingLogo;
 };
-
-#endif

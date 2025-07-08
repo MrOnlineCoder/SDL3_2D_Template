@@ -19,7 +19,7 @@ Text2D::~Text2D()
     }
 }
 
-void Text2D::setFont(const Font &fnt)
+void Text2D::setFont(Font &fnt)
 {
     m_font = &fnt;
     update();
@@ -64,7 +64,7 @@ void Text2D::update()
     }
 
     SDL_Surface *surface = TTF_RenderText_Blended(
-        m_font->getFont(),
+        m_font->obtainHandle(m_fontSize, FontStyle::NORMAL),
         m_string.c_str(),
         m_string.size(),
         m_fillColor);
@@ -94,4 +94,9 @@ void Text2D::update()
     m_bounds.height = m_size.y;
 
     SDL_DestroySurface(surface);
+}
+
+void Text2D::setFontSize(int size)
+{
+    m_fontSize = size;
 }

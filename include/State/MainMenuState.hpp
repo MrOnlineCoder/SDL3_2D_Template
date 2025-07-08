@@ -1,5 +1,4 @@
-#ifndef MAIN_MENU_STATE_HPP
-#define MAIN_MENU_STATE_HPP
+#pragma once
 
 #include <State/State.hpp>
 
@@ -22,5 +21,3 @@ public:
 
 private:
 };
-
-#endif

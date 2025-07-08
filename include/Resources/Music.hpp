@@ -1,5 +1,4 @@
-#ifndef MUSIC_HPP
-#define MUSIC_HPP
+#pragma once
 
 #include <SDL3_mixer/SDL_mixer.h>
 
@@ -20,5 +19,3 @@ public:
 private:
     Mix_Music *m_music;
 };
-
-#endif

@@ -1,6 +1,4 @@
-#ifndef RECT_HPP
-#define RECT_HPP
-
+#pragma once
 #include <Common/Vector.hpp>
 
 #include <SDL3/SDL_rect.h>
@@ -42,5 +40,3 @@ public:
 
 using IntRect = Rect<int>;
 using FloatRect = Rect<float>;
-
-#endif

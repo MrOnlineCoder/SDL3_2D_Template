@@ -1,5 +1,4 @@
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+#pragma once
 
 #include <SDL3/SDL_rect.h>
 
@@ -127,5 +126,3 @@ public:
 
 typedef Vector<int> Vector2i;
 typedef Vector<float> Vector2f;
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef GAME_CONTEXT_HPP
-#define GAME_CONTEXT_HPP
+#pragma once
 
 #include <SDL3/SDL.h>
 
@@ -11,12 +10,15 @@ struct GameContext
 {
     SDL_Window *window;
     SDL_Renderer *renderer;
-    AssetsManager *assets;
-    StateManager *states;
-    uint64_t ticksSinceStart;
-    float secondsSinceStart;
     Vector2f windowSize;
     Vector2f windowCenter;
+    Vector2f logicalSize;
+
+    AssetsManager *assets;
+    StateManager *states;
+
+    uint64_t ticksSinceStart;
+    float secondsSinceStart;
 
     float deltaTime;
 
@@ -24,5 +26,3 @@ struct GameContext
 };
 
 extern GameContext *g_gameContext;
-
-#endif

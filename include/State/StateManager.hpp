@@ -1,5 +1,4 @@
-#ifndef STATE_MANAGER_HPP
-#define STATE_MANAGER_HPP
+#pragma once
 
 #include <SDL3/SDL_events.h>
 
@@ -34,5 +33,3 @@ private:
     std::vector<State *> m_states;
     State *m_currentState;
 };
-
-#endif

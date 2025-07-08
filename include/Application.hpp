@@ -1,6 +1,4 @@
-#ifndef APPLICATION_HPP
-#define APPLICATION_HPP
-
+#pragma once
 class Application
 {
 public:
@@ -14,5 +12,3 @@ private:
     void loadAssets();
     void loadStates();
 };
-
-#endif
