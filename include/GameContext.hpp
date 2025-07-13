@@ -6,6 +6,7 @@
 #include <Resources/AssetsManager.hpp>
 #include <State/StateManager.hpp>
 #include <Input/InputManager.hpp>
+#include <Common/Random.hpp>
 
 struct GameContext
 {
@@ -23,6 +24,8 @@ struct GameContext
     float deltaTime;
 
     InputManager input;
+
+    Random random;
 
     bool isRunning;
 };

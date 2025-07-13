@@ -33,6 +33,8 @@ void Font::loadFromFile(const std::string &filepath)
     }
 
     m_handles[{24, FontStyle::NORMAL}] = m_baseHandle;
+
+    LOG_INFO("Font loaded from file: %s", filepath.c_str());
 }
 
 TTF_Font *Font::obtainHandle(int ptsize, FontStyle style)
